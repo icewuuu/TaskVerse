@@ -32,6 +32,13 @@ export async function fetchAlbums() {
   return response.json();
 }
 
+export async function fetchPhotosForAlbum(albumId: number) {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`
+  );
+  return response.json();
+}
+
 export async function fetchPhotos() {
   const response = await fetch("https://jsonplaceholder.typicode.com/photos");
   return response.json();

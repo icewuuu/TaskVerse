@@ -1,38 +1,19 @@
-import { useState } from "react";
-import { Text } from "react-native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Text } from "react-native";
 import TodosScreen from "./components/TodosScreen";
-import styles from "./styles/styles";
-import FilterModal from "./components/FilterModal";
+import PostsScreen from "./components/PostsScreen";
+import UsersScreen from "./components/UsersScreen";
+import AlbumsScreen from "components/AlbumsScreen";
+import PhotosScreen from "components/PhotosScreen";
 
 const Drawer = createDrawerNavigator();
 
 export default function App() {
-  const [modalVisible, setModalVisible] = useState(false);
-
   return (
     <NavigationContainer>
-      <Drawer.Navigator
-        screenOptions={{
-          drawerStyle: {
-            width: 250,
-          },
-          swipeEnabled: true,
-          swipeEdgeWidth: 100,
-          headerRight: () => (
-            <TouchableOpacity
-              style={styles.filterIcon}
-              onPress={() => setModalVisible(true)}
-            >
-              <Ionicons name="filter" size={24} color="black" />
-            </TouchableOpacity>
-          ),
-        }}
-        initialRouteName="Todos"
-      >
+      <Drawer.Navigator initialRouteName="Todos">
         <Drawer.Screen
           name="Todos"
           component={TodosScreen}
@@ -40,7 +21,34 @@ export default function App() {
             drawerLabel: () => <Text>Todos</Text>,
           }}
         />
-        {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
+        <Drawer.Screen
+          name="Posts"
+          component={PostsScreen}
+          options={{
+            drawerLabel: () => <Text>Posts</Text>,
+          }}
+        />
+        <Drawer.Screen
+          name="Users"
+          component={UsersScreen}
+          options={{
+            drawerLabel: () => <Text>Users</Text>,
+          }}
+        />
+        <Drawer.Screen
+          name="Albums"
+          component={AlbumsScreen}
+          options={{
+            drawerLabel: () => <Text>Albums</Text>,
+          }}
+        />
+        <Drawer.Screen
+          name="Photos"
+          component={PhotosScreen}
+          options={{
+            drawerLabel: () => <Text>Photos</Text>,
+          }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
